@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 14 for Web
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternationalSOS_api", "InternationalSOS_api\InternationalSOS_api.csproj", "{C49673EC-BE85-4CD3-8A59-38552428A32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternationalSOS_api.Tests", "InternationalSOS_api.Tests\InternationalSOS_api.Tests.csproj", "{51DED808-EC30-4C65-B6A6-BC4DCF3F6D1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C49673EC-BE85-4CD3-8A59-38552428A32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49673EC-BE85-4CD3-8A59-38552428A32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49673EC-BE85-4CD3-8A59-38552428A32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49673EC-BE85-4CD3-8A59-38552428A32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DED808-EC30-4C65-B6A6-BC4DCF3F6D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DED808-EC30-4C65-B6A6-BC4DCF3F6D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DED808-EC30-4C65-B6A6-BC4DCF3F6D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DED808-EC30-4C65-B6A6-BC4DCF3F6D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

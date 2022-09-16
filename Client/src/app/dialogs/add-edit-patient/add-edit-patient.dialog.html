@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>{{isEdit? 'Edit Patient Details':'Add Patient Details'}}</h1>
+<form #patientForm="ngForm" (ngSubmit)="patientForm.form.valid && onSubmit()" novalidate>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter Name" [(ngModel)]="patient.Name"  #Name="ngModel" name="Name" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact</mat-label>
+        <input matInput placeholder="Enter Contact Number" [(ngModel)]="patient.Contact"  #Contact="ngModel" name="Contact" required minlength="10">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter Email ID" [(ngModel)]="patient.Email" #Email="ngModel" name="Email" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Enter Address" [(ngModel)]="patient.Address"  #Address="ngModel" name="Address" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput placeholder="Enter Type of Patient" [(ngModel)]="patient.Type" #Type="ngModel" name="Type" required>
+     </mat-form-field>
+     <mat-form-field appearance="outline">
+        <mat-label>Doctor </mat-label>
+        <mat-select placeholder="Select Doctor Type" name="Type" [(ngModel)]="patient.DoctorId" #DoctorId="ngModel" name="DoctorId" required>
+            <mat-option [value]="item.DoctorId" *ngFor="let item of doctorNameType">Dr.{{item.Name}} --- {{item.Doctor_Type}}</mat-option>
+          </mat-select>
+      </mat-form-field> 
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="close()">Close</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="!patientForm.valid">{{isEdit?'Edit Patient':'Add patient'}}</button>
+
+</div>
+</form>

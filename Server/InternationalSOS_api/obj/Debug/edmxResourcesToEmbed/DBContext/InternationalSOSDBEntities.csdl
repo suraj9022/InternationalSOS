@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InternationalSOSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="Doctor_Id" />
+    </Key>
+    <Property Name="Doctor_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="Int32" />
+    <NavigationProperty Name="Doctor_Type" Relationship="Self.FK_Doctor_Doctor_Type" FromRole="Doctor" ToRole="Doctor_Type" />
+    <NavigationProperty Name="Patients" Relationship="Self.FK_Patient_Doctor" FromRole="Doctor" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Doctor_Type">
+    <Key>
+      <PropertyRef Name="Type_Id" />
+    </Key>
+    <Property Name="Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Doctors" Relationship="Self.FK_Doctor_Doctor_Type" FromRole="Doctor_Type" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Patient_Id" />
+    </Key>
+    <Property Name="Patient_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Doctor_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK_Patient_Doctor" FromRole="Patient" ToRole="Doctor" />
+  </EntityType>
+  <Association Name="FK_Doctor_Doctor_Type">
+    <End Role="Doctor_Type" Type="Self.Doctor_Type" Multiplicity="0..1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor_Type">
+        <PropertyRef Name="Type_Id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Doctor">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="Doctor_Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="Doctor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InternationalSOSDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+    <EntitySet Name="Doctor_Type" EntityType="Self.Doctor_Type" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <AssociationSet Name="FK_Doctor_Doctor_Type" Association="Self.FK_Doctor_Doctor_Type">
+      <End Role="Doctor_Type" EntitySet="Doctor_Type" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Doctor" Association="Self.FK_Patient_Doctor">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Patient" EntitySet="Patients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

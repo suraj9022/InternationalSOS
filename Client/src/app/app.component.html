@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>International SOS App</span>
+    <span class="example-spacer"></span>
+
+  </mat-toolbar>
+  
+<div class="container text-center" style="margin-top: 5%;">
+    <div class="example-button-row">
+        <button mat-raised-button color="warn" routerLink="/doctor">Doctors Information</button>
+        <button mat-raised-button color="warn" routerLink="/patient" style="margin-left: 10%;">Patients Information</button>
+    </div>
+
+</div>
+<div class="container text-center">
+<router-outlet></router-outlet>
+</div>

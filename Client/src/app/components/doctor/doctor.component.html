@@ -1,0 +1,67 @@
+<div class="container">
+  <h3 class="textLeft" style="float: left;"> Doctors History: </h3>
+  <button style="float: right;" mat-raised-button (click)="openAddDoctorDialog()" color="primary">Add Doctors</button> 
+</div>
+
+<div class="container">
+  <div style="margin-top: 10px">
+  
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <ng-container matColumnDef="DoctorId">
+        <th mat-header-cell *matHeaderCellDef> Doctor Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.DoctorId}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Contact">
+        <th mat-header-cell *matHeaderCellDef> Contact </th>
+        <td mat-cell *matCellDef="let element"> {{element.Contact}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Doctor_Type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.Doctor_Type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary">
+          <mat-icon (click)="editDoctorInfo(row)">edit</mat-icon>
+        </button> 
+        <button mat-icon-button color="warn">
+          <mat-icon (click)="delete(row)">delete</mat-icon>
+        </button>  
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>
